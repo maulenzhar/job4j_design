@@ -4,21 +4,21 @@ import java.util.*;
 
 public class GenericUsage {
     public static void main(String[] args) {
-        // WildCard
+         /*WildCard*/
         List<Integer> l = List.of(1, 2, 3, 4, 5);
         printRsl(l);
 
-        // Bounded Wildcard
+         /*Bounded Wildcard*/
         List<Person> per = List.of(new Person("name", 21, new Date(913716000000L)));
         new GenericUsage().printInfo(per);
 
         List<Programmer> pro = List.of(new Programmer("name123", 23, new Date(913716000000L)));
         new GenericUsage().printInfo(pro);
 
+        /* Lower bounded Wildcard*/
         List<? super Integer> list = new ArrayList<>();
         new GenericUsage().addAll(list);
 
-        // Lower bounded Wildcard
         GenericsClass<String, String> gen = new GenericsClass<>("First key", "First value");
         System.out.println("Вывод в консоль: " + gen);
 
