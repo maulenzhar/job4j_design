@@ -16,33 +16,36 @@ public class SimpleArrayList<T> implements SimpleList<T> {
 
     @Override
     public void add(T value) {
-        if (size == container.length) {
+        addVal(value);
+        modCount++;
+    }
+
+    private void addVal(T value) {
+        if (size + 1 == container.length) {
             container = Arrays.copyOf(container, container.length * 2);
         }
-        container[size] = value;
-        modCount++;
-        size++;
+        container[size++] = value;
+    }
+
+    public void add(T value, T[] container, int size) {
+
     }
 
     @Override
     public T set(int index, T newValue) {
-        Objects.checkIndex(index, size);
-        T old = container[index];
+        T old = get(index);
         container[index] = newValue;
         return old;
     }
 
     @Override
     public T remove(int index) {
-        Objects.checkIndex(index, size);
-        T old = container[index];
-        modCount++;
-        final int newSize;
-        newSize = size - 1;
-        if ((newSize) > index) {
-            System.arraycopy(container, index + 1, container, index, newSize - index);
+        T old = get(index);
+        if ((size - 1) > index) {
+            System.arraycopy(container, index + 1, container, index, size - 1 - index);
         }
-        size = newSize;
+        size--;
+        modCount++;
         container[size] = null;
         return old;
     }
@@ -65,15 +68,14 @@ public class SimpleArrayList<T> implements SimpleList<T> {
             private int point = 0;
             @Override
             public boolean hasNext() {
+                if (modCount != expectedModCount) {
+                    throw new ConcurrentModificationException();
+                }
                 return point < size;
             }
 
             @Override
             public T next() {
-                if (modCount != expectedModCount) {
-                    throw new ConcurrentModificationException();
-                }
-
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
