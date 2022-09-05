@@ -16,19 +16,15 @@ public class SimpleArrayList<T> implements SimpleList<T> {
 
     @Override
     public void add(T value) {
-        addVal(value);
+        addVal();
+        container[size++] = value;
         modCount++;
     }
 
-    private void addVal(T value) {
+    private void addVal() {
         if (size + 1 == container.length) {
             container = Arrays.copyOf(container, container.length * 2);
         }
-        container[size++] = value;
-    }
-
-    public void add(T value, T[] container, int size) {
-
     }
 
     @Override
