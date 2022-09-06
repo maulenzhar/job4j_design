@@ -22,9 +22,10 @@ public class SimpleArrayList<T> implements SimpleList<T> {
     }
 
     private void addVal() {
-        if (size + 1 == container.length) {
-            container = Arrays.copyOf(container, container.length * 2);
+        if (container.length == 0) {
+            container = (T[]) new Object[size + 1];
         }
+        container = Arrays.copyOf(container, container.length * 2);
     }
 
     @Override
@@ -62,6 +63,7 @@ public class SimpleArrayList<T> implements SimpleList<T> {
         return new Iterator<T>() {
             int expectedModCount = modCount;
             private int point = 0;
+
             @Override
             public boolean hasNext() {
                 if (modCount != expectedModCount) {
