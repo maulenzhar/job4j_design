@@ -18,8 +18,7 @@ public class SimpleLinkedList<E> implements LinkedList<E> {
         } else {
             while (f.next != null) {
                 f = f.next;
-                continue;
-            }
+             }
             f.next = new Node<>(e, null);
         }
         size++;
