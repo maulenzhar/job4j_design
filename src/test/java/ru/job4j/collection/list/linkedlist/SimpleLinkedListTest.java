@@ -1,4 +1,4 @@
-package ru.job4j.list.linkedlist;
+package ru.job4j.collection.list.linkedlist;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

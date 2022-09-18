@@ -1,4 +1,4 @@
-package ru.job4j.list.arraylist;
+package ru.job4j.collection.list.arraylist;
 
 public interface SimpleList<T> extends Iterable<T> {
     void add(T value);

@@ -1,4 +1,4 @@
-package ru.job4j.list.linkedlist;
+package ru.job4j.collection.list.linkedlist;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

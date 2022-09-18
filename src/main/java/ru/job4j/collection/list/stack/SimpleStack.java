@@ -1,6 +1,6 @@
-package ru.job4j.list.stack;
+package ru.job4j.collection.list.stack;
 
-import ru.job4j.list.linkedlist.ForwardLinked;
+import ru.job4j.collection.list.linkedlist.ForwardLinked;
 
 public class SimpleStack<T> {
 

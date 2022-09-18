@@ -1,4 +1,4 @@
-package ru.job4j.list.arraylist;
+package ru.job4j.collection.list.arraylist;
 
 import static org.assertj.core.api.Assertions.*;
 
