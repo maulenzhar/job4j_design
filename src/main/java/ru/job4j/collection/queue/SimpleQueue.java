@@ -9,17 +9,23 @@ public class SimpleQueue<T> {
     int o;
 
     public T poll() {
-        for (int j = o; j <= i; j++) {
+        while (o <= i) {
             final T pop = in.pop();
             out.push(pop);
             i--;
             o++;
         }
-
+        o--;
         return out.pop();
     }
 
     public void push(T value) {
+        while (o > 0) {
+            final T pop = out.pop();
+            in.push(pop);
+            i++;
+            o--;
+        }
         in.push(value);
         i++;
     }
