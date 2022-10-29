@@ -20,4 +20,13 @@ public class SimpleSetTest {
         assertThat(set.contains(null)).isTrue();
         assertThat(set.add(null)).isFalse();
     }
+
+    @Test
+    void whenAddNullAndNotNull() {
+        Set<Integer> set = new SimpleSet<>();
+        assertThat(set.add(null)).isTrue();
+        assertThat(set.add(1)).isTrue();
+        assertThat(set.contains(null)).isTrue();
+        assertThat(set.contains(1)).isTrue();
+    }
 }
