@@ -15,9 +15,9 @@ public class SimpleSet<T> implements Set<T> {
         boolean res = true;
         Iterator<T> iterator = set.iterator();
         while (iterator.hasNext()) {
-            if(Objects.equals(value, iterator.next())) {
-               res = false;
-           }
+            if (Objects.equals(value, iterator.next())) {
+                res = false;
+            }
         }
         if (res) {
             set.add(value);
@@ -30,7 +30,7 @@ public class SimpleSet<T> implements Set<T> {
         boolean res = false;
         Iterator<T> iterator = set.iterator();
         while (iterator.hasNext()) {
-            if(Objects.equals(value, iterator.next())) {
+            if (Objects.equals(value, iterator.next())) {
                 res = true;
             }
         }
