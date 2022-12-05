@@ -46,14 +46,6 @@ public class User implements Comparable<User> {
     }
 
     @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
-
-    @Override
     public int compareTo(User o) {
         return Integer.compare(id, o.getId());
     }
