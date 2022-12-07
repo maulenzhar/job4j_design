@@ -13,7 +13,7 @@ public class EvenNumberFile {
             String[] nums = text.toString().split(System.lineSeparator());
             for (String num : nums) {
                 if (Integer.parseInt(num) % 2 == 0)
-                System.out.println("четное " + num);
+                    System.out.println("четное " + num);
             }
         } catch (Exception e) {
             e.printStackTrace();
