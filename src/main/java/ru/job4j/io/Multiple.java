@@ -8,7 +8,7 @@ public class Multiple {
             FileOutputStream out = new FileOutputStream("result.txt");
             for (int i = 0; i < 10; i++) {
                 int res = 2 * i;
-                out.write(String.valueOf(res).getBytes() );
+                out.write(String.valueOf(res).getBytes());
                 out.write(System.lineSeparator().getBytes());
             }
         } catch (Exception e) {
