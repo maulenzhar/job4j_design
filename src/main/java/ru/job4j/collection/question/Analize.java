@@ -21,7 +21,8 @@ public class Analize {
             userCurr.put(user.getId(), user.getName());
         }
 
-        for (int i = 1; i <= userPrev.size() + 1; i++) {
+        int j = Math.max(userPrev.size(), current.size());
+        for (int i = 0; i <= j + 1; i++) {
             String p = userPrev.get(i);
             String c = userCurr.get(i);
             if (p != null && c != null && !p.equals(c)) {

@@ -27,6 +27,16 @@ class AnalizeTest {
     }
 
     @Test
+    void whenTwoChanged() {
+        User u1 = new User(1, "A");
+        User u2 = new User(2, "B");
+        User u3 = new User(3, "C");
+        Set previous = Set.of(u1, u2, u3);
+        Set current = Set.of(u1, new User(2, "BB"), new User(3, "CC"));
+        assertThat(Analize.diff(previous, current)).isEqualTo(new Info(0, 2, 0));
+    }
+
+    @Test
     void whenOneDeleted() {
         User u1 = new User(1, "A");
         User u2 = new User(2, "B");
@@ -37,6 +47,16 @@ class AnalizeTest {
     }
 
     @Test
+    void whenTwoDeleted() {
+        User u1 = new User(1, "A");
+        User u2 = new User(2, "B");
+        User u3 = new User(3, "C");
+        Set previous = Set.of(u1, u2, u3);
+        Set current = Set.of(u1);
+        assertThat(Analize.diff(previous, current)).isEqualTo(new Info(0, 0, 2));
+    }
+
+    @Test
     void whenOneAdded() {
         User u1 = new User(1, "A");
         User u2 = new User(2, "B");
@@ -44,6 +64,16 @@ class AnalizeTest {
         Set previous = Set.of(u1, u2, u3);
         Set current = Set.of(u1, u2, u3, new User(4, "D"));
         assertThat(Analize.diff(previous, current)).isEqualTo(new Info(1, 0, 0));
+    }
+
+    @Test
+    void whenTwoAdded() {
+        User u1 = new User(1, "A");
+        User u2 = new User(2, "B");
+        User u3 = new User(3, "C");
+        Set previous = Set.of(u1, u2, u3);
+        Set current = Set.of(u1, u2, u3, new User(4, "D"), new User(5, "E"));
+        assertThat(Analize.diff(previous, current)).isEqualTo(new Info(2, 0, 0));
     }
 
     @Test
