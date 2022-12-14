@@ -8,7 +8,7 @@ public class Analize {
     public static Info diff(Set<User> previous, Set<User> current) {
         Info info = new Info(0, 0, 0);
 
-        Map<Integer, String> userPrev = new TreeMap<>();
+        Map<Integer, String> userPrev = new HashMap<>();
 
         for (User user : previous) {
             userPrev.put(user.getId(), user.getName());
