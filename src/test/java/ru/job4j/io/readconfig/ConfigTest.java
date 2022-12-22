@@ -14,8 +14,36 @@ public class ConfigTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void whenPairNotValid() {
+    public void whenPairNotValidOne() {
         String path = "./data/app1.properties";
+        Config config = new Config(path);
+        config.load();
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenPairNotValidTwo() {
+        String path = "./data/app2.properties";
+        Config config = new Config(path);
+        config.load();
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenPairNotValidThree() {
+        String path = "./data/app3.properties";
+        Config config = new Config(path);
+        config.load();
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenPairNotValidFour() {
+        String path = "./data/app4.properties";
+        Config config = new Config(path);
+        config.load();
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenPairNotValidFive() {
+        String path = "./data/app5.properties";
         Config config = new Config(path);
         config.load();
     }

@@ -3,7 +3,9 @@ package ru.job4j.io.readconfig;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.StringJoiner;
 
 public class Config {
     private final String path;
@@ -16,16 +18,25 @@ public class Config {
     public void load() {
         try (BufferedReader in = new BufferedReader(new FileReader(this.path))) {
             for (String line = in.readLine(); line != null; line = in.readLine()) {
+                if ("".equals(line) || line.contains("#")) {
+                    continue;
+                }
+                int entry = 0;
+                for (int i = 0; i < line.length(); i++) {
+                    if (line.charAt(i) == '=') {
+                        entry++;
+                    }
+                }
+
                 String[] str = line.split("=");
-                if (str.length == 2
+                if (entry < 2
+                        && str.length == 2
                         && str[0] != null
                         && str[1] != null
                         && !str[0].equals("")
                         && !str[1].equals("")
                 ) {
                     values.put(str[0], str[1]);
-                } else if ("#".equals(str[0].split("")[0]) || "".equals(str[0])) {
-                    continue;
                 } else {
                     throw new IllegalArgumentException();
                 }
