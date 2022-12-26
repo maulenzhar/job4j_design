@@ -21,6 +21,7 @@ public class AnalysisTest {
             out.println("500 11:01:02");
             out.println("200 11:02:02");
         }
+
         File target = tempDir.resolve("target.csv").toFile();
         Analysis analysis = new Analysis();
         analysis.unavailable(source.getAbsolutePath(), target.getAbsolutePath());
