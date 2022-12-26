@@ -16,24 +16,24 @@ public class ListUsage {
         // на последнее место ставим null, чтобы не было утечки памяти (если удаляем последний элемент)
         array[array.length - 1] = null;
         System.out.println(Arrays.toString(array));*/
-//        List<Long> li = new ArrayList<>();
-//        li.add(66l);
-//        li.add(70l);
-//        li.add(21l);
-//        System.out.println("The final list for long value is given as: ");
-//        System.out.println(li.iterator().next());
-//        System.out.println(li.iterator().next());
-//        System.out.println(li.iterator().next());
+        /*List<Long> li = new ArrayList<>();
+        li.add(66l);
+        li.add(70l);
+        li.add(21l);
+        System.out.println("The final list for long value is given as: ");
+        System.out.println(li.iterator().next());
+        System.out.println(li.iterator().next());
+        System.out.println(li.iterator().next());
 
-//        LinkedList<String> s = new LinkedList<>();
-//        s.add("1");
-//        s.add("2");
-//        s.iterator();
+        LinkedList<String> s = new LinkedList<>();
+        s.add("1");
+        s.add("2");
+        s.iterator();
 
-//        SimpleList<Integer> list = new SimpleArrayList<>(0);
-//        list.add(1);
-//        list.add(2);
-//        System.out.println(list);
+        SimpleList<Integer> list = new SimpleArrayList<>(0);
+        list.add(1);
+        list.add(2);
+        System.out.println(list);*/
         SList<String> a = new SList<String>("a");
         SLIterator<String> it = a.sliterator();
         it.add("b");
