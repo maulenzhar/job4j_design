@@ -9,6 +9,7 @@ import java.nio.file.Path;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class AnalysisTest {
+
     @Test
     void analysis(@TempDir Path tempDir) throws IOException {
         File source = tempDir.resolve("server.log").toFile();
@@ -30,4 +31,5 @@ public class AnalysisTest {
         }
         assertThat(rsl.toString()).isEqualTo("10:57:01;10:59:01;11:01:02;11:02:02;");
     }
+
 }
