@@ -1,21 +1,23 @@
 package ru.job4j.collection.list.arraylist;
 
+import java.util.Arrays;
+
 public class ListUsage {
     public static void main(String[] args) {
-        /*String[] array = {"one", "two", "three", "four", "five"};
+        String[] array = {"one", "two", "three", "four", "five"};
         System.out.println(Arrays.toString(array));
-        // индекс по которому удаляем
+        /* индекс по которому удаляем*/
         int index = 2;
         System.arraycopy(
-                array, // откуда копируем
-                index + 1, // начиная с какого индекса
-                array, // куда копируем
-                index, // начиная с какого индекса
-                array.length - index - 1 // сколько элементов копируем
+                array,  /*откуда копируем*/
+                index + 1, /*начиная с какого индекса*/
+                array,  /*куда копируем*/
+                index, /* начиная с какого индекса*/
+                array.length - index - 1  /*сколько элементов копируем*/
         );
-        // на последнее место ставим null, чтобы не было утечки памяти (если удаляем последний элемент)
+         /*на последнее место ставим null, чтобы не было утечки памяти (если удаляем последний элемент)*/
         array[array.length - 1] = null;
-        System.out.println(Arrays.toString(array));*/
+        System.out.println(Arrays.toString(array));
         /*List<Long> li = new ArrayList<>();
         li.add(66l);
         li.add(70l);
@@ -40,8 +42,8 @@ public class ListUsage {
         it.add("c");
         System.out.println(a);
         it.remove();
-        System.out.println(a);  //1
-        while (it.hasNext()) {    //2
+        System.out.println(a);  /*1*/
+        while (it.hasNext()) {    /*2*/
             System.out.println(it.next());
         }
     }
