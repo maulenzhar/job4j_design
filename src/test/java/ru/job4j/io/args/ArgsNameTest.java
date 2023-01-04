@@ -23,6 +23,30 @@ public class ArgsNameTest {
     }
 
     @Test
+    void whenKeyIsEmpty() {
+        ArgsName jvm = ArgsName.of(new String[] {"-=512"});
+        assertThat(jvm.get("")).isEqualTo("512");
+    }
+
+    @Test
+    void whenValueIsEmpty() {
+        ArgsName jvm = ArgsName.of(new String[] {"-Xmx="});
+        assertThat(jvm.get("Xmx")).isEqualTo("");
+    }
+
+    @Test
+    void whenEqualsIsIsMiss() {
+        assertThatThrownBy(() -> ArgsName.of(new String[]{"-Xmx:512"}))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void whenFirstLineIsEmpty() {
+        assertThatThrownBy(() -> ArgsName.of(new String[]{"Xmx=512"}))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     void whenGetNotExist() {
         ArgsName jvm = ArgsName.of(new String[] {"-Xmx=512"});
         assertThatThrownBy(() -> jvm.get("Xms")).isInstanceOf(IllegalArgumentException.class);
@@ -33,4 +57,6 @@ public class ArgsNameTest {
         assertThatThrownBy(() -> ArgsName.of(new String[]{}))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+
 }
