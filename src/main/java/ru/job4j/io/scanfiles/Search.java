@@ -26,7 +26,7 @@ public class Search {
     private static void isValid(String[] args) {
         path = Paths.get(args[0]);
         extension = args[1];
-        File file = Search.path.toFile();
+        File file = path.toFile();
         if (!file.exists()) {
             throw new IllegalArgumentException(String.format("Not exist %s", args[0]));
         }
