@@ -25,7 +25,7 @@ public class ArgsName {
     }
 
     private void isValidate(String[] args, int i) {
-        Pattern pattern = Pattern.compile("^-.*=.*$");
+        Pattern pattern = Pattern.compile("^-.\\S*=.\\S*$");
         Matcher matcher = pattern.matcher(args[i]);
         if (!matcher.find()) {
             throw new IllegalArgumentException(String.format("No such extension %s", args[i]));
