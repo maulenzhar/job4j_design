@@ -9,34 +9,28 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
-    private List<Path> paths = new ArrayList<>();
     private Map<FileProperty, List<Path>> result = new HashMap<>();
-    private Set<FileProperty> files = new HashSet<>();
 
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-        FileProperty fileProp = new FileProperty(attrs.size(), file.getFileName().toString(), file.toAbsolutePath());
-
-        if (!files.add(fileProp)) {
-            paths.add(fileProp.getPath());
-            result.put(fileProp, paths);
-        }
-
+        FileProperty fileProp = new FileProperty(attrs.size(), file.getFileName().toString());
+        result.putIfAbsent(fileProp, new ArrayList<>());
+        result.get(fileProp).add(file);
         return super.visitFile(file, attrs);
     }
 
     public Map<FileProperty, List<Path>> getResult() {
-
-        List<FileProperty> firstFile = files.stream().filter(file -> result.containsKey(file)).collect(Collectors.toList());
-
-        for (FileProperty file : firstFile) {
-            paths.add(file.getPath());
-            result.put(file, paths);
-        }
-
-        return result;
+        return result.entrySet().stream()
+                .filter(v -> v.getValue().size() > 1)
+                .collect(Collectors.toMap(x -> x.getKey(), x -> x.getValue()));
     }
 
-
+    public void printResult(DuplicatesVisitor visitor) {
+        for (Map.Entry<FileProperty, List<Path>> f : visitor.getResult().entrySet()) {
+            String r = String.format("%s - %s", f.getKey().getName(), f.getKey().getSize());
+            System.out.println(r);
+            f.getValue().forEach(System.out::println);
+        }
+    }
 }
 
