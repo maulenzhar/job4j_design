@@ -25,27 +25,29 @@ public class ConsoleChat {
 
     public void run() {
         Scanner input = new Scanner(System.in);
-        String enterWord = "Введите слово-фразу: ";
-        System.out.print(enterWord);
-        userWord = input.nextLine();
-        String state = getState(userWord);
-        chat.add(enterWord + userWord);
+        String state = "";
         String answerBot;
-        int answer = new Random().nextInt(readPhrases().size());
+        int size = readPhrases().size();
 
-        if (OUT.equals(state)) {
-            answerBot = "Бот: Пока";
-            System.out.print(answerBot);
-            chat.add(answerBot);
-            saveLog(chat);
-        } else if (STOP.equals(state)) {
-            run();
-        } else if (CONTINUE.equals(state) || "".equals(state)) {
-            answerBot = "Бот: " + readPhrases().get(answer);
-            System.out.print(answerBot);
-            chat.add(answerBot);
-            run();
+        while (!OUT.equals(state)) {
+            String enterWord = "Введите слово-фразу: ";
+            System.out.print(enterWord);
+            userWord = input.nextLine();
+            state = getState(userWord);
+
+            if (STOP.equals(state)) {
+                chat.add(enterWord + userWord);
+            } else if (CONTINUE.equals(state) || "".equals(state)) {
+                answerBot = "Бот: " + readPhrases().get(new Random().nextInt(size));
+                System.out.print(answerBot);
+                chat.add(answerBot);
+            }
         }
+
+        answerBot = "Бот: Пока";
+        System.out.print(answerBot);
+        chat.add(answerBot);
+        saveLog(chat);
     }
 
     private String getState(String usersWord) {
