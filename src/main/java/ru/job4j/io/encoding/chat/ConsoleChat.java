@@ -27,7 +27,8 @@ public class ConsoleChat {
         Scanner input = new Scanner(System.in);
         String state = "";
         String answerBot;
-        int size = readPhrases().size();
+        List<String> phrases = readPhrases();
+        int random = new Random().nextInt(phrases.size());
 
         while (!OUT.equals(state)) {
             String enterWord = "Введите слово-фразу: ";
@@ -38,7 +39,7 @@ public class ConsoleChat {
             if (STOP.equals(state)) {
                 chat.add(enterWord + userWord);
             } else if (CONTINUE.equals(state) || "".equals(state)) {
-                answerBot = "Бот: " + readPhrases().get(new Random().nextInt(size));
+                answerBot = "Бот: " + phrases.get(random);
                 System.out.print(answerBot);
                 chat.add(answerBot);
             }
@@ -63,6 +64,7 @@ public class ConsoleChat {
 
     private List<String> readPhrases() {
         List<String> res = new ArrayList<>();
+        System.out.println("Производится чтение файла");
         try (BufferedReader br = new BufferedReader(new FileReader(botAnswers, StandardCharsets.UTF_8))) {
             br.lines().map(s -> s + System.lineSeparator()).forEach(res::add);
         } catch (IOException e) {
