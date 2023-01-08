@@ -31,6 +31,7 @@ public class ConsoleChat {
         String state = getState(userWord);
         chat.add(enterWord + userWord);
         String answerBot;
+        int answer = new Random().nextInt(readPhrases().size());
 
         if (OUT.equals(state)) {
             answerBot = "Бот: Пока";
@@ -40,7 +41,6 @@ public class ConsoleChat {
         } else if (STOP.equals(state)) {
             run();
         } else if (CONTINUE.equals(state) || "".equals(state)) {
-            int answer = new Random().nextInt(readPhrases().size());
             answerBot = "Бот: " + readPhrases().get(answer);
             System.out.print(answerBot);
             chat.add(answerBot);
