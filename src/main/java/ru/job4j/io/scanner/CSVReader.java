@@ -3,12 +3,46 @@ package ru.job4j.io.scanner;
 import ru.job4j.io.args.ArgsName;
 
 import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.StringJoiner;
+import java.util.regex.Pattern;
 
 public class CSVReader {
+    private static String pathArg;
+    private static String delimiterArg;
+    private static String outArg;
+    private static String filterArg;
+
+    private static void isValid(ArgsName argsName) {
+        pathArg = argsName.get("path");
+        delimiterArg = argsName.get("delimiter");
+        outArg = argsName.get("out");
+        filterArg = argsName.get("filter");
+
+        Path path = Paths.get(pathArg);
+        if (!path.toFile().exists()) {
+            throw new IllegalArgumentException(String.format("Not exist %s", pathArg));
+        }
+        Pattern patternDelimetr = Pattern.compile("\\W");
+        if (!patternDelimetr.matcher(delimiterArg).find()) {
+            throw new IllegalArgumentException(String.format("No such delimiter %s", delimiterArg));
+        }
+        Pattern patternOutput = Pattern.compile("^.*\\.csv$");
+        if (!patternOutput.matcher(outArg).find() && !"stdout".equals(outArg)) {
+            throw new IllegalArgumentException(String.format("No such output %s", outArg));
+        }
+        String[] filter = filterArg.split(",");
+        for (String f : filter) {
+            if (!"name".equals(f) && !"age".equals(f) && !"last_name".equals(f) && !"education".equals(f)) {
+                throw new IllegalArgumentException(String.format("No such filter %s", filterArg));
+            }
+        }
+    }
+
     private static List<Integer> getFilteredIndex(String filter, List<String[]> list) {
         String[] listOfFilterVal = filter.split(",");
         String[] listOfMainVal = list.get(0);
@@ -56,22 +90,19 @@ public class CSVReader {
     }
 
     public static void handle(ArgsName argsName) throws Exception {
-        String path = argsName.get("path");
-        String delimiter = argsName.get("delimiter");
-        String out = argsName.get("out");
-        String filter = argsName.get("filter");
+        isValid(argsName);
 
         List<String[]> list = new ArrayList<>();
-        FileInputStream source = new FileInputStream(path);
+        FileInputStream source = new FileInputStream(pathArg);
         try (var scanner = new Scanner(source).useDelimiter(System.lineSeparator())) {
             while (scanner.hasNext()) {
-                list.add(scanner.next().split(delimiter));
+                list.add(scanner.next().split(delimiterArg));
             }
         }
 
-        List<Integer> filterIndx = getFilteredIndex(filter, list);
-        List<StringJoiner> data = getFilteredData(delimiter, list, filterIndx);
-        output(out, data);
+        List<Integer> filterIndx = getFilteredIndex(filterArg, list);
+        List<StringJoiner> data = getFilteredData(delimiterArg, list, filterIndx);
+        output(outArg, data);
     }
 
     public static void main(String[] args) throws Exception {
