@@ -15,12 +15,13 @@ public class EchoServer {
                      BufferedReader in = new BufferedReader(
                              new InputStreamReader(socket.getInputStream()))) {
                     out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
+
                     Pattern patternExit = Pattern.compile("^.*msg=Exit.*$");
                     Pattern patternHello = Pattern.compile("^.*msg=Hello.*$");
                     Pattern patternAny = Pattern.compile("^.*msg=.*$");
+
                     for (String str = in.readLine(); str != null && !str.isEmpty(); str = in.readLine()) {
                         System.out.println(str);
-
                         if (patternExit.matcher(str).find()) {
                             server.close();
                         } else if (patternHello.matcher(str).find()) {
