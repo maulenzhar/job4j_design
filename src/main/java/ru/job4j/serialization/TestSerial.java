@@ -6,7 +6,7 @@ class TestSerial implements Serializable {
     public byte version = 100;
     public byte count = 0;
 
-    public static void main(String args[]) throws IOException, ClassNotFoundException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         FileOutputStream fos = new FileOutputStream("./data/temp.out");
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         TestSerial tsWrite = new TestSerial();
@@ -19,6 +19,6 @@ class TestSerial implements Serializable {
         ObjectInputStream oin = new ObjectInputStream(fis);
         /*восстановление объекта происходит с помощью вызова метода oin.readObject()*/
         TestSerial tsRead = (TestSerial) oin.readObject();
-        System.out.println("version="+tsRead.version);
+        System.out.println("version=" + tsRead.version);
     }
 }
