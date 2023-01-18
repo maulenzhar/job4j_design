@@ -1,0 +1,8 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<car isSport="false" year="2003" name="Toyota Camry">
+    <fuelType type="Petrol"/>
+    <formerOwners>
+        <formerOwner>Patrick</formerOwner>
+        <formerOwner>Spongebob</formerOwner>
+    </formerOwners>
+</car>
