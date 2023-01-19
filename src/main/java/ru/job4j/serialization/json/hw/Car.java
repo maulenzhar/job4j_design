@@ -13,12 +13,32 @@ public class Car {
     private final FuelType fuelType;
     private final String[] formerOwners;
 
-    public Car(boolean isSport, int year, String name, FuelType fuelType, String[] formerOwners) {
+    public Car(boolean isSport, int year, String name, FuelType fuelType, String... formerOwners) {
         this.isSport = isSport;
         this.year = year;
         this.name = name;
         this.fuelType = fuelType;
         this.formerOwners = formerOwners;
+    }
+
+    public boolean isSport() {
+        return isSport;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public FuelType getFuelType() {
+        return fuelType;
+    }
+
+    public String[] getFormerOwners() {
+        return formerOwners;
     }
 
     @Override
