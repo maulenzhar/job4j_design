@@ -11,7 +11,7 @@ create table childrens(
     father_id int references father(id)
 );
 
-***********
+-- ***********
 
 create table doctors(
      id serial primary key,
@@ -29,7 +29,7 @@ create table doctors(
      patient_id int references patients(id)
  );
  
- *******
+--  *******
  
  create table computer(
     id serial primary key,
@@ -39,7 +39,7 @@ create table doctors(
  
  create table mac_address(
     id serial primary key,
-    number varchar(255,
+    number varchar(255),
     computer_id int references computer(id) unique
 );
 
