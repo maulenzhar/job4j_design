@@ -18,7 +18,7 @@ values ('МОЛОЧНЫЕ ПРОДУКТЫ'),
        ('ЗЕРНОВЫЕ'),
        ('ЗЕРНОВЫЕ'),
        ('ФРУКТЫ И ОВОЩИ'),
-       ('СЫР'),;
+       ('СЫР');
 
 insert into product(name, expired_date, price, type_id)
 values
@@ -35,11 +35,6 @@ values
 ('морковь', '2023-02-10', 40, 3),
 ('капуста', '2023-02-20', 55, 3),
 ('Моцарелла', '2023-01-31', 150, 4);
-
-insert into product(name, expired_date, price, type_id)
-values
-
-
 
 -- 1. Написать запрос получение всех продуктов с типом "СЫР"
  select *
@@ -61,7 +56,7 @@ where p.expired_date < current_date;
 -- продукты с максимальной ценой.
 select *
 from product p
-order by p.price desc;
+where price = (select max(p1.price) from product p1);
 
 -- 5. Написать запрос, который выводит для каждого типа количество продуктов к нему принадлежащих. В виде имя_типа, количество
 select t.name, count(t.id)
