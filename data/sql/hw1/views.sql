@@ -44,3 +44,29 @@ from students as s
          join orders o on s.id = o.student_id
          join books b on o.book_id = b.id
          join authors a on b.author_id = a.id;
+
+-- ********************
+
+
+select s.name, count(a.name), a.name from students as s
+                                              join orders o on s.id = o.student_id
+                                              join books b on o.book_id = b.id
+                                              join authors a on b.author_id = a.id
+group by (s.name, a.name) having count(a.name) >= 2;
+
+-- create view имя_представления as запрос_select
+create view show_students_with_2_or_more_books
+as select s.name as student, count(a.name), a.name as author from students as s
+                                                                      join orders o on s.id = o.student_id
+                                                                      join books b on o.book_id = b.id
+                                                                      join authors a on b.author_id = a.id
+   group by (s.name, a.name) having count(a.name) >= 2;
+
+-- Выполнить запрос
+select * from show_students_with_2_or_more_books;
+
+-- Изменить представление можно с помощью ALTER VIEW.
+--     alter view старое_имя rename to новое_имя
+
+-- Удалить представление
+-- drop view имя_представления
