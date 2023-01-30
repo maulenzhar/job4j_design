@@ -17,6 +17,8 @@ insert into departments(name)
 values ('department 2');
 insert into departments(name)
 values ('department 3');
+insert into departments(name)
+values ('department 4');
 
 insert into employees(name, departments_id)
 values ('employees 1', 1);
@@ -33,9 +35,9 @@ values ('employees 6', 2);
 
 -- 3. Используя left join найти департаменты, у которых нет работников
 select *
-from employees e
-         left join departments d on d.id = e.departments_id
-where e.departments_id is null;
+from departments d
+         left join  employees e on d.id = e.departments_id
+where e.id is null;
 
 -- 4. Используя left и right join написать запросы, которые давали бы одинаковый результат
 -- (порядок вывода колонок в эти запросах также должен быть идентичный).
@@ -55,9 +57,9 @@ create table teens
 );
 insert into teens(name, gender)
 values
-       ('John', 'man'),
-       ('Olivia', 'woman'),
-       ('Amelia', 'woman'),
-       ('James', 'woman');
-select * from teens t1 cross join teens t2;
-
+('John', 'man'),
+('Olivia', 'woman'),
+('Amelia', 'woman'),
+('James', 'woman');
+select * from teens t1 cross join teens t2
+where t1.gender != t2.gender;
