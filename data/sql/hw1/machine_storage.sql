@@ -75,5 +75,5 @@ where c.id is null;
 -- Вывести коробки передач, которые не используются НИ в одной машине, аналогично п.2.
 select ct.name
 from car_transmissions ct
-         left join cars c on ct.id = c.engine_id
+         left join cars c on ct.id = c.transmission_id
 where c.id is null;
