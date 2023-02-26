@@ -24,8 +24,10 @@ public class TableEditor implements AutoCloseable {
 
     public void createTable(String tableName) {
         try (Statement statement = connection.createStatement()) {
-            String sql = "CREATE TABLE IF NOT EXISTS " + tableName + " (" +
-                    "                       id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY" +
+            String sql = "CREATE TABLE IF NOT EXISTS " + tableName + " ("
+                    +
+                    "                       id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY"
+                    +
                     ");";
             statement.execute(sql);
         } catch (SQLException throwables) {
