@@ -27,7 +27,7 @@ public class ImportDB {
             rd.lines().forEach(u -> {
                 String[] user = u.split(";", 2);
                 if (!user[0].matches("\\w+\\s\\w+") || !user[1].matches("\\S{1,}@\\S{1,}\\.\\S{1,}")) {
-                    throw new IllegalArgumentException(String.format("Нужно добавить имя или почту для %s %s", user[0], user[1]) );
+                    throw new IllegalArgumentException(String.format("Нужно добавить имя или почту для %s %s", user[0], user[1]));
                 }
                 users.add(new User(user[0], user[1]));
               }
