@@ -1,36 +1,38 @@
-create table fauna (
-    id serial primary key,
-    name text,
-    avg_age int,
-    discovery_date date
+create table customer
+(
+    id   serial primary key,
+    name varchar(255)
 );
 
-insert into fauna(name, avg_age, discovery_date) values
-                                                        ('giant lizards',  10000,  '1950-09-01'),
-                                                        ('crocodiles', 21000,  '1951-09-01'),
-                                                        ('frilled lizard', 10001,  '1952-09-01'),
-                                                        ('black snake', 100,  '1949-09-01'),
-                                                        ('Australian bull shark', 10002, '1948-09-01'),
-                                                        ('whales', 10,  '1947-09-01'),
-                                                        ('Kerguelen fur seal', 11,   '1958-09-01'),
-                                                        ('Sea leopard', 12,  null),
-                                                        ('crabeater seal', 13, null),
-                                                        ('Weddell seal', 14,  null),
-                                                        ('southern elephant seal', 15, null),
-                                                        ('drop fish', 16, null);
+create table orders
+(
+    id          serial primary key,
+    customer_id int references customer (id)
+);
+
+insert into customer(name)
+values ('Alfred'),
+       ('Antonio'),
+       ('John'),
+       ('Ana ')
+;
+
+insert into orders(customer_id)
+values (3),
+       (4);
 
 select *
-from fauna
-where name ilike '%fish%';
+from orders o
+         join customer c on o.customer_id = c.id;
 
-select *
-from fauna
-where avg_age >= 10000 and avg_age < 21000;
+select c.name, o.id
+from orders o
+         join customer c on o.customer_id = c.id;
 
-select *
-from fauna
-where discovery_date is null;
+select c.name as Заказчик, o.id as Заказ
+from orders o
+         join customer c on o.customer_id = c.id;
 
-select *
-from fauna
-where DATE_PART('Year', discovery_date) < 1950;
+select c.name as Заказчик, o.id Заказ
+from orders o
+         join customer c on o.customer_id = c.id;
