@@ -31,6 +31,9 @@ public class SimpleSet {
 
     private void grow() {
         int length = container.length * 2;
-        container = new String[length];
+        String[] oldContainer  = container;
+        String[] newContainer = new String[length];
+        System.arraycopy(oldContainer, 0, newContainer, 0, container.length);
+        container = newContainer;
     }
 }

@@ -23,10 +23,12 @@ INSERT INTO public.person (id, name, company_id) VALUES (1, 'person1', 1);
 INSERT INTO public.person (id, name, company_id) VALUES (2, 'person2', 2);
 INSERT INTO public.person (id, name, company_id) VALUES (3, 'person3', 3);
 INSERT INTO public.person (id, name, company_id) VALUES (4, 'person4', 4);
-INSERT INTO public.person (id, name, company_id) VALUES (5, 'person1', 4);
-INSERT INTO public.person (id, name, company_id) VALUES (6, 'person1', 3);
-INSERT INTO public.person (id, name, company_id) VALUES (7, 'person1', 4);
-INSERT INTO public.person (id, name, company_id) VALUES (8, 'person1', 3);
+INSERT INTO public.person (id, name, company_id) VALUES (5, 'person5', 4);
+INSERT INTO public.person (id, name, company_id) VALUES (6, 'person6', 3);
+INSERT INTO public.person (id, name, company_id) VALUES (7, 'person7', 4);
+INSERT INTO public.person (id, name, company_id) VALUES (8, 'person8', 3);
+INSERT INTO public.person (id, name, company_id) VALUES (9, 'person9', 5);
+INSERT INTO public.person (id, name, company_id) VALUES (10, 'person10', 5);
 
 
 -- 1. В одном запросе получить
