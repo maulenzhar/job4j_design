@@ -9,10 +9,7 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class Emulator {
-    /*
-        *  AbstractCache<String, String> abstractCache = new DirFileCache("./src/main/java/ru/job4j/gc/cache/files/");
-            System.out.println(abstractCache.get("Names.txt"));
-        * */
+   
     public static void main(String[] args) {
         AbstractCache<String, String> abstractCache = null;
         String content = "";
