@@ -14,7 +14,7 @@ class GenerateTemplateTest {
     @Test
     public void whenGanarateSuccessull() {
         GenerateTemplate generateTemplate = new GenerateTemplate();
-        Map<String, String> map = new HashMap<>();
+        Map<String, String> map = null;
         map.put("name", "Petr Arsentev");
         map.put("subject", "you");
         String result = generateTemplate.produce("I am a ${name}, Who are ${subject}?", map);
@@ -24,7 +24,7 @@ class GenerateTemplateTest {
     @Test
     public void whenKeyNotFoundThenGetException() {
         GenerateTemplate generateTemplate = new GenerateTemplate();
-        Map<String, String> map = new HashMap<>();
+        Map<String, String> map = null;
         map.put("subject", "you");
         assertThatThrownBy(() -> generateTemplate.produce("I am a ${name}, Who are ${subject}?", map)).
                 isInstanceOf(IllegalArgumentException.class);
@@ -33,7 +33,7 @@ class GenerateTemplateTest {
     @Test
     public void whenSurnameExcessThenGetException() {
         GenerateTemplate generateTemplate = new GenerateTemplate();
-        Map<String, String> map = new HashMap<>();
+        Map<String, String> map = null;
         map.put("name", "Petr");
         map.put("surname", "Arsentev");
         map.put("subject", "you");
