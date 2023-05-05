@@ -1,10 +1,18 @@
-0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:18 +0300] "GET /items/ajax.html HTTP/1.1" 404 1113
-0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:23 +0300] "GET /job4j.ru/profile HTTP/1.1" 302 -
-0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:23 +0300] "GET /job4j.ru/profile/ HTTP/1.1" 404 1110
-0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:34 +0300] "GET /job4j.ru/profileNew/ HTTP/1.1" 404 -
-0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:48 +0300] "GET / HTTP/1.1" 200 11488
-0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:49 +0300] "GET /404.png HTTP/1.1" 200 5103
-0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:49 +0300] "GET /tomcat.css HTTP/1.1" 200 5931
-0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:49 +0300] "GET /bg-nav.png HTTP/1.1" 200 1404
-0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:49 +0300] "GET /bg-button.png HTTP/1.1" 200 713
-0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:49 +0300] "GET /bg-middle.png HTTP/1.1" 200 4048
+[0.518s][info][gc] Using The Z Garbage Collector
+[42.651s][info][gc] GC(0) Garbage Collection (Warmup) 10M(10%)->6M(6%)
+[43.903s][info][gc] GC(1) Garbage Collection (Warmup) 20M(20%)->10M(10%)
+[432.684s][info][gc] GC(2) Garbage Collection (Warmup) 32M(32%)->28M(28%)
+[440.857s][info][gc] GC(3) Garbage Collection (Proactive) 44M(44%)->14M(14%)
+[741.640s][info][gc] GC(4) Garbage Collection (Proactive) 16M(16%)->10M(10%)
+[1041.756s][info][gc] GC(5) Garbage Collection (Proactive) 12M(12%)->10M(10%)
+[1341.866s][info][gc] GC(6) Garbage Collection (Proactive) 10M(10%)->10M(10%)
+[1641.948s][info][gc] GC(7) Garbage Collection (Proactive) 10M(10%)->10M(10%)
+[1942.034s][info][gc] GC(8) Garbage Collection (Proactive) 10M(10%)->10M(10%)
+[2242.143s][info][gc] GC(9) Garbage Collection (Proactive) 12M(12%)->10M(10%)
+[2542.230s][info][gc] GC(10) Garbage Collection (Proactive) 10M(10%)->10M(10%)
+[2842.331s][info][gc] GC(11) Garbage Collection (Proactive) 10M(10%)->10M(10%)
+[3142.442s][info][gc] GC(12) Garbage Collection (Proactive) 10M(10%)->10M(10%)
+[3442.556s][info][gc] GC(13) Garbage Collection (Proactive) 10M(10%)->10M(10%)
+[3742.628s][info][gc] GC(14) Garbage Collection (Proactive) 10M(10%)->10M(10%)
+[4042.744s][info][gc] GC(15) Garbage Collection (Proactive) 10M(10%)->10M(10%)
+[4342.837s][info][gc] GC(16) Garbage Collection (Proactive) 10M(10%)->10M(10%)

@@ -1,4 +1,4 @@
-package ru.job4j.ood.tdd;
+package ru.job4j.ood.tdd.cinema;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
