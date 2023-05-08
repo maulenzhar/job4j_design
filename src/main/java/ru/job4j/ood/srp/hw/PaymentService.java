@@ -1,4 +1,4 @@
-package ru.job4j.ood.SRP.hw;
+package ru.job4j.ood.srp.hw;
 
 import java.util.List;
 
