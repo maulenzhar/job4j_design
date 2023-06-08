@@ -1,20 +1,28 @@
 package ru.job4j.ood.srp.hw.report.model;
 
-
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Calendar;
 import java.util.Objects;
 
-public class Employee {
+@XmlRootElement(name = "employee")
+@XmlAccessorType(XmlAccessType.FIELD)
+public class EmployeeXml {
+    @XmlAttribute
     private String name;
+    @XmlAttribute
     private Calendar hired;
+    @XmlAttribute
     private Calendar fired;
+    @XmlAttribute
     private double salary;
 
-    public Employee(String name) {
-        this.name = name;
+    public EmployeeXml() {
     }
 
-    public Employee(String name, Calendar hired, Calendar fired, double salary) {
+    public EmployeeXml(String name, Calendar hired, Calendar fired, double salary) {
         this.name = name;
         this.hired = hired;
         this.fired = fired;
@@ -61,7 +69,7 @@ public class Employee {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Employee employee = (Employee) o;
+        EmployeeXml employee = (EmployeeXml) o;
         return Objects.equals(name, employee.name);
     }
 

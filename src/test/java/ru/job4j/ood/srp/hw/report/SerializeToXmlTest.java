@@ -1,0 +1,36 @@
+package ru.job4j.ood.srp.hw.report;
+
+import org.junit.jupiter.api.Test;
+import ru.job4j.ood.srp.hw.report.formatter.DateTimeParser;
+import ru.job4j.ood.srp.hw.report.formatter.XmlReportDateTimeParser;
+import ru.job4j.ood.srp.hw.report.model.Employee;
+import ru.job4j.ood.srp.hw.report.model.EmployeeXml;
+import ru.job4j.ood.srp.hw.report.store.MemStore;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import java.util.Calendar;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
+class SerializeToXmlTest {
+    @Test
+    public void whenSerializeToXml() throws JAXBException {
+        MemStore store = new MemStore();
+        Calendar now = Calendar.getInstance();
+        Employee worker1 = new Employee("Ivan", now, now, 100);
+        Employee worker2 = new Employee("Dima", now, now, 101);
+        DateTimeParser<Calendar> parser = new XmlReportDateTimeParser();
+        store.add(worker1);
+        store.add(worker2);
+        SerializeReport engine = new SerializeToXml(JAXBContext.newInstance(EmployeeXml.class));
+        final String expect = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n"
+                +
+                "<employee name=\"Ivan\" hired=\"" + parser.parse(worker1.getHired()) + "\" fired=\"" + parser.parse(worker1.getFired()) + "\" salary=\"100.0\"/>\n"
+                +
+                "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n"
+                +
+                "<employee name=\"Dima\" hired=\"" + parser.parse(worker2.getHired()) + "\" fired=\"" + parser.parse(worker2.getFired()) + "\" salary=\"101.0\"/>\n";
+        assertThat(engine.serialize(store.findBy(em -> true))).isEqualTo(expect.toString());
+    }
+}
