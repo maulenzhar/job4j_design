@@ -10,6 +10,9 @@ public class Employee {
     private Calendar fired;
     private double salary;
 
+    public Employee() {
+    }
+
     public Employee(String name) {
         this.name = name;
     }
@@ -19,6 +22,11 @@ public class Employee {
         this.hired = hired;
         this.fired = fired;
         this.salary = salary;
+    }
+
+    public Employee(Calendar hired, Calendar fired) {
+        this.hired = hired;
+        this.fired = fired;
     }
 
     public String getName() {

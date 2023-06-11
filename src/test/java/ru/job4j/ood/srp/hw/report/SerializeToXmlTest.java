@@ -23,14 +23,23 @@ class SerializeToXmlTest {
         DateTimeParser<Calendar> parser = new XmlReportDateTimeParser();
         store.add(worker1);
         store.add(worker2);
-        SerializeReport engine = new SerializeToXml(JAXBContext.newInstance(EmployeeXml.class));
-        final String expect = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n"
-                +
-                "<employee name=\"Ivan\" hired=\"" + parser.parse(worker1.getHired()) + "\" fired=\"" + parser.parse(worker1.getFired()) + "\" salary=\"100.0\"/>\n"
-                +
-                "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n"
-                +
-                "<employee name=\"Dima\" hired=\"" + parser.parse(worker2.getHired()) + "\" fired=\"" + parser.parse(worker2.getFired()) + "\" salary=\"101.0\"/>\n";
+        SerializeReport engine = new SerializeToXml(JAXBContext.newInstance(EmployeeXml.class), parser);
+        final String expect = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
+                "<employees>\n" +
+                "    <employee>\n" +
+                "        <fired>" + parser.parse(worker1.getFired()) + "</fired>\n" +
+                "        <hired>" + parser.parse(worker1.getHired()) + "</hired>\n" +
+                "        <name>Ivan</name>\n" +
+                "        <salary>100.0</salary>\n" +
+                "    </employee>\n" +
+                "    <employee>\n" +
+                "        <fired>" + parser.parse(worker2.getFired()) + "</fired>\n" +
+                "        <hired>" + parser.parse(worker1.getHired()) + "</hired>\n" +
+                "        <name>Dima</name>\n" +
+                "        <salary>101.0</salary>\n" +
+                "    </employee>\n" +
+                "</employees>\n";
+
         assertThat(engine.serialize(store.findBy(em -> true))).isEqualTo(expect.toString());
     }
 }
