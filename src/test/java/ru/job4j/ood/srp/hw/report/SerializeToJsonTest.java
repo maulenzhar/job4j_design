@@ -22,7 +22,15 @@ class SerializeToJsonTest {
         store.add(worker2);
         DateTimeParser<Calendar> dateTimeParser = new ReportDateTimeParser();
         SerializeReport engine = new SerializeToJson(new GsonBuilder().create(), dateTimeParser);
-        final String expect = "[\"{\\\"fired\\\":\\\"" + dateTimeParser.parse(now) + "\\\",\\\"name\\\":\\\"Ivan\\\",\\\"hired\\\":\\\"" + dateTimeParser.parse(now) + "\\\",\\\"salary\\\":100}\",\"{\\\"fired\\\":\\\"" + dateTimeParser.parse(now) + "\\\",\\\"name\\\":\\\"Dima\\\",\\\"hired\\\":\\\"" + dateTimeParser.parse(now) + "\\\",\\\"salary\\\":101}\"]";
+        final String expect = "[\"{\\\"fired\\\":\\\""
+                + dateTimeParser.parse(now)
+                + "\\\",\\\"name\\\":\\\"Ivan\\\",\\\"hired\\\":\\\""
+                + dateTimeParser.parse(now)
+                + "\\\",\\\"salary\\\":100}\",\"{\\\"fired\\\":\\\""
+                + dateTimeParser.parse(now)
+                + "\\\",\\\"name\\\":\\\"Dima\\\",\\\"hired\\\":\\\""
+                + dateTimeParser.parse(now)
+                + "\\\",\\\"salary\\\":101}\"]";
         assertThat(engine.serialize(store.findBy(em -> true))).isEqualTo(expect.toString());
     }
 }
