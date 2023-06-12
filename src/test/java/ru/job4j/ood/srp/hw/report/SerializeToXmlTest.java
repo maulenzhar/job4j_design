@@ -18,9 +18,9 @@ class SerializeToXmlTest {
     public void whenSerializeToXml() throws JAXBException {
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
-        Employee worker1 = new Employee("Ivan", now, now, 100);
-        Employee worker2 = new Employee("Dima", now, now, 101);
         DateTimeParser<Calendar> parser = new XmlReportDateTimeParser();
+        Employee worker1 = new Employee("Ivan", now, now, 100, parser);
+        Employee worker2 = new Employee("Dima", now, now, 101, parser);
         store.add(worker1);
         store.add(worker2);
         SerializeReport engine = new SerializeToXml(JAXBContext.newInstance(EmployeeXml.class), parser);
@@ -31,11 +31,11 @@ class SerializeToXmlTest {
                 "    <employee>\n"
                 +
                 "        <fired>"
-                + parser.parse(worker1.getFired())
+                + parser.parse(worker1.getCalendarFired())
                 + "</fired>\n"
                 +
                 "        <hired>"
-                + parser.parse(worker1.getHired())
+                + parser.parse(worker1.getCalendarHired())
                 + "</hired>\n"
                 +
                 "        <name>Ivan</name>\n"
@@ -47,11 +47,11 @@ class SerializeToXmlTest {
                 "    <employee>\n"
                 +
                 "        <fired>"
-                + parser.parse(worker2.getFired())
+                + parser.parse(worker2.getCalendarFired())
                 + "</fired>\n"
                 +
                 "        <hired>"
-                + parser.parse(worker1.getHired())
+                + parser.parse(worker1.getCalendarHired())
                 + "</hired>\n"
                 +
                 "        <name>Dima</name>\n"

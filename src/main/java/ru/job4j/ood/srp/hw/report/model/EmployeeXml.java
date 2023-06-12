@@ -15,6 +15,5 @@ public class EmployeeXml {
 
     public EmployeeXml(List<Employee> employee) {
         this.employee = employee;
-
     }
 }

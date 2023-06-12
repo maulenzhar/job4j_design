@@ -24,8 +24,8 @@ public class SerializeToJson implements SerializeReport {
         JSONObject jsonObject = new JSONObject();
         for (Employee e : employees) {
             jsonObject.put("name", e.getName());
-            jsonObject.put("hired",  dateTimeParser.parse(e.getHired()));
-            jsonObject.put("fired", dateTimeParser.parse(e.getFired()));
+            jsonObject.put("hired",  dateTimeParser.parse(e.getCalendarHired()));
+            jsonObject.put("fired", dateTimeParser.parse(e.getCalendarFired()));
             jsonObject.put("salary", e.getSalary());
             list.add(jsonObject.toString());
         }

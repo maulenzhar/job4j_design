@@ -24,8 +24,8 @@ public class ReportEngineImpl implements ReportEngine {
                 .append(System.lineSeparator());
         for (Employee employee : store.findBy(filter)) {
             text.append(employee.getName()).append(" ")
-                    .append(dateTimeParser.parse(employee.getHired())).append(" ")
-                    .append(dateTimeParser.parse(employee.getFired())).append(" ")
+                    .append(dateTimeParser.parse(employee.getCalendarHired())).append(" ")
+                    .append(dateTimeParser.parse(employee.getCalendarFired())).append(" ")
                     .append(employee.getSalary())
                     .append(System.lineSeparator());
         }

@@ -27,8 +27,8 @@ class ReportEngineAccountingImplTest {
                 .append("Name; Hired; Fired; Salary;")
                 .append(System.lineSeparator())
                 .append(worker.getName()).append(" ")
-                .append(parser.parse(worker.getHired())).append(" ")
-                .append(parser.parse(worker.getFired())).append(" ")
+                .append(parser.parse(worker.getCalendarHired())).append(" ")
+                .append(parser.parse(worker.getCalendarFired())).append(" ")
                 .append(currency.convert(Currency.RUB, worker.getSalary(), Currency.USD))
                 .append(System.lineSeparator());
         assertThat(engine.generate(em -> true, Currency.RUB, Currency.USD)).isEqualTo(expect.toString());

@@ -1,20 +1,22 @@
 package ru.job4j.ood.srp.hw.report.model;
 
 
+import ru.job4j.ood.srp.hw.report.formatter.DateTimeParser;
+
+import javax.xml.bind.annotation.*;
 import java.util.Calendar;
 import java.util.Objects;
 
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.PROPERTY)
 public class Employee {
     private String name;
     private Calendar hired;
     private Calendar fired;
     private double salary;
 
+   public DateTimeParser<Calendar> dateTimeParser;
     public Employee() {
-    }
-
-    public Employee(String name) {
-        this.name = name;
     }
 
     public Employee(String name, Calendar hired, Calendar fired, double salary) {
@@ -24,9 +26,12 @@ public class Employee {
         this.salary = salary;
     }
 
-    public Employee(Calendar hired, Calendar fired) {
+    public Employee(String name, Calendar hired, Calendar fired, double salary, DateTimeParser<Calendar> dateTimeParser) {
+        this.name = name;
         this.hired = hired;
         this.fired = fired;
+        this.salary = salary;
+        this.dateTimeParser = dateTimeParser;
     }
 
     public String getName() {
@@ -37,7 +42,7 @@ public class Employee {
         this.name = name;
     }
 
-    public Calendar getHired() {
+    public Calendar getCalendarHired() {
         return hired;
     }
 
@@ -45,7 +50,7 @@ public class Employee {
         this.hired = hired;
     }
 
-    public Calendar getFired() {
+    public Calendar getCalendarFired() {
         return fired;
     }
 
@@ -76,5 +81,14 @@ public class Employee {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+    @XmlElement
+    public String getHired() {
+        return dateTimeParser.parse(hired);
+    }
+
+    @XmlElement
+    public String getFired() {
+        return dateTimeParser.parse(hired);
     }
 }
