@@ -6,6 +6,9 @@ public class Trash extends AbstractStore {
 
     public String name;
 
+    public Trash() {
+    }
+
     public Trash(String name) {
         this.name = name;
     }

@@ -6,6 +6,9 @@ public class Warehouse extends AbstractStore {
 
    public String name;
 
+    public Warehouse() {
+    }
+
     public Warehouse(String name) {
         this.name = name;
     }
@@ -17,4 +20,5 @@ public class Warehouse extends AbstractStore {
     public void setName(String name) {
         this.name = name;
     }
+
 }

@@ -9,11 +9,13 @@ public abstract class AbstractStore implements Store {
     private final Map<String, Food> storage = new HashMap<>();
 
     @Override
-    public void add(Food food) {
-        storage.put(food.getName(), food);
+    public void add(String store, Food food) {
+        storage.put(store, food);
     }
     @Override
     public Food get(String name) {
         return storage.get(name);
     }
+
+    public abstract String getName();
 }

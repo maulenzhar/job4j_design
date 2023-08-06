@@ -6,6 +6,9 @@ public class Shop extends AbstractStore {
 
     public String name;
 
+    public Shop() {
+    }
+
     public Shop(String name) {
         this.name = name;
     }

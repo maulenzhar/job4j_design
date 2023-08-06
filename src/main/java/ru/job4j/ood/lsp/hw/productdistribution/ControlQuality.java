@@ -1,32 +1,42 @@
 package ru.job4j.ood.lsp.hw.productdistribution;
 
 import ru.job4j.ood.lsp.hw.productdistribution.food.Food;
+import ru.job4j.ood.lsp.hw.productdistribution.storage.Shop;
+import ru.job4j.ood.lsp.hw.productdistribution.storage.Trash;
+import ru.job4j.ood.lsp.hw.productdistribution.storage.Warehouse;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.HashMap;
 
 public class ControlQuality {
-    public HashMap<String, Store> storage;
+    public AbstractStore storage;
 
-    public ControlQuality(HashMap<String, Store> storage) {
+    public ControlQuality(AbstractStore storage) {
         this.storage = storage;
     }
 
-    public void distribute(Food food, LocalDateTime dateNow) {
-        double percentage = getPercentage(food, dateNow);
+    public void add(String store, Food food) {
+        this.storage.add(store, food);
+    }
 
+    public AbstractStore distribute(Food food, LocalDateTime dateNow) {
+        double percentage = getPercentage(food, dateNow);
+        AbstractStore storage = null;
         if (percentage < 25) {
-            storage.get("Warehouse").add(food);
+            storage = new Warehouse("Warehouse");
         } else if (25 < percentage && percentage < 75) {
-            double discountPrice = food.getPrice() - (food.getPrice() * (food.getDiscount() / 100));
-            food.setPrice(discountPrice);
-            storage.get("Shop").add(food);
+            Discount discount = new Discount(food.getPrice(), food.getDiscount());
+            food.setPrice(discount.getDiscountNumber());
+            storage = new Shop("Shop");
         } else if (percentage > 100) {
-            storage.get("Trash").add(food);
+            storage = new Trash("Trash");
         } else if (percentage > 75) {
-            storage.get("Shop").add(food);
+            storage = new Shop("Shop");
         }
+        ControlQuality controlQuality = new ControlQuality(storage);
+        controlQuality.add(storage.getName(), food);
+
+        return storage;
     }
 
     private double getPercentage(Food food, LocalDateTime dateNow) {
