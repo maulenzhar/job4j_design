@@ -1,6 +1,6 @@
 package ru.job4j.ood.isp;
 
-// метод getDiscount придется реализовать во всех методах
+/* метод getDiscount придется реализовать во всех методах*/
 public interface Store {
     void add(Object object);
 
