@@ -14,7 +14,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 class ControlQualityTest {
-    final HashMap<String, Store> stores = new HashMap<>();
     final LocalDateTime now = LocalDateTime.of(2023, Month.JULY, 15, 10, 10, 30);
 
     @Test
@@ -25,7 +24,7 @@ class ControlQualityTest {
         Food milk = new Food("Milk", start, end, 100, 5.0);
         AbstractStore distribute = controlQuality.distribute(milk, now);
 
-        assertThat(distribute.get("Shop").getName()).isEqualTo("Milk");
+        assertThat(distribute.getName()).isEqualTo("Shop");
     }
 
     @Test
@@ -36,7 +35,7 @@ class ControlQualityTest {
         Food milk = new Food("Milk", start, end, 100, 5.0);
         AbstractStore distribute = controlQuality.distribute(milk, now);
 
-        assertThat(distribute.get("Warehouse").getName()).isEqualTo("Milk");
+        assertThat(distribute.getName()).isEqualTo("Warehouse");
     }
 
     @Test
@@ -47,6 +46,6 @@ class ControlQualityTest {
         Food milk = new Food("Milk", start, end, 100, 5.0);
         AbstractStore distribute = controlQuality.distribute(milk, now);
 
-        assertThat(distribute.get("Trash").getName()).isEqualTo("Milk");
+        assertThat(distribute.getName()).isEqualTo("Trash");
     }
 }

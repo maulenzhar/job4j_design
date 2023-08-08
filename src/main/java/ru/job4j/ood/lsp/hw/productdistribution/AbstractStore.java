@@ -12,10 +12,6 @@ public abstract class AbstractStore implements Store {
     public void add(String store, Food food) {
         storage.put(store, food);
     }
-    @Override
-    public Food get(String name) {
-        return storage.get(name);
-    }
 
-    public abstract String getName();
+
 }

@@ -7,11 +7,12 @@ import ru.job4j.ood.lsp.hw.productdistribution.storage.Warehouse;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 
 public class ControlQuality {
-    public AbstractStore storage;
+    public Store storage;
 
-    public ControlQuality(AbstractStore storage) {
+    public ControlQuality(Store storage) {
         this.storage = storage;
     }
 
@@ -21,18 +22,8 @@ public class ControlQuality {
 
     public AbstractStore distribute(Food food, LocalDateTime dateNow) {
         double percentage = getPercentage(food, dateNow);
-        AbstractStore storage = null;
-        if (percentage < 25) {
-            storage = new Warehouse("Warehouse");
-        } else if (25 < percentage && percentage < 75) {
-            Discount discount = new Discount(food.getPrice(), food.getDiscount());
-            food.setPrice(discount.getDiscountNumber());
-            storage = new Shop("Shop");
-        } else if (percentage > 100) {
-            storage = new Trash("Trash");
-        } else if (percentage > 75) {
-            storage = new Shop("Shop");
-        }
+        Distribution distribution = new Distribution(food, percentage);
+        AbstractStore storage = distribution.getStore();
         ControlQuality controlQuality = new ControlQuality(storage);
         controlQuality.add(storage.getName(), food);
 
