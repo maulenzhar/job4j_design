@@ -1,24 +1,22 @@
 package ru.job4j.ood.lsp.hw.productdistribution.storage;
 
-import ru.job4j.ood.lsp.hw.productdistribution.AbstractStore;
+import ru.job4j.ood.lsp.hw.productdistribution.food.Food;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Warehouse extends AbstractStore {
-
-   public String name;
-
-    public Warehouse() {
+    public List<Food> chooseFoodForShop(List<Food> foods) {
+        List<Food> shopFoods = new ArrayList<>();
+        for (Food food : foods) {
+            if (food.getProductSpoilagePercentage() < 25) {
+                shopFoods.add(food);
+            }
+        }
+        return shopFoods;
     }
 
-    public Warehouse(String name) {
-        this.name = name;
+    public void add(List<Food> foods) {
+        add("Warehouse", chooseFoodForShop(foods));
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
 }

@@ -1,8 +1,10 @@
 package ru.job4j.ood.lsp.hw.productdistribution;
 
 import ru.job4j.ood.lsp.hw.productdistribution.food.Food;
+import ru.job4j.ood.lsp.hw.productdistribution.storage.AbstractStore;
 
-public interface Store<T extends AbstractStore> {
-    void add(String store, Food food);
-    String getName();
+import java.util.List;
+
+public interface Store {
+    void add(List<Food> foods);
 }

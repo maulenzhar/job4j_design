@@ -8,6 +8,7 @@ public class Food {
     public LocalDateTime expiryDate;
     public double price;
     public double discount;
+    private double productSpoilagePercentage;
 
     public Food(String name, LocalDateTime createDate, LocalDateTime expiryDate, double price, double discount) {
         this.name = name;
@@ -56,4 +57,13 @@ public class Food {
     public void setDiscount(double discount) {
         this.discount = discount;
     }
+
+    public double getProductSpoilagePercentage() {
+        return productSpoilagePercentage;
+    }
+
+    public void setProductSpoilagePercentage(double productSpoilagePercentage) {
+        this.productSpoilagePercentage = productSpoilagePercentage;
+    }
+
 }
