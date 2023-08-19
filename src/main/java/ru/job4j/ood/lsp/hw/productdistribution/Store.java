@@ -6,5 +6,6 @@ import ru.job4j.ood.lsp.hw.productdistribution.storage.AbstractStore;
 import java.util.List;
 
 public interface Store {
-    void add(List<Food> foods);
+    void addAll(List<Food> foods);
+    List<Food> getAll(List<Food> foods);
 }

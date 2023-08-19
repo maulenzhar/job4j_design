@@ -7,17 +7,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Trash extends AbstractStore {
-    public List<Food> chooseFoodForShop(List<Food> foods) {
+    public void addAll(List<Food> foods) {
+        add(chooseFoodForShop(foods));
+    }
+
+    public List<Food> getAll(List<Food> foods) {
+        return get(chooseFoodForShop(foods));
+    }
+
+    private List<Food> chooseFoodForShop(List<Food> foods) {
         List<Food> shopFoods = new ArrayList<>();
         for (Food food : foods) {
-            if (food.getProductSpoilagePercentage() > 100) {
+            if (food.getProductSpoilagePercentage() > EXPIRED) {
                 shopFoods.add(food);
             }
         }
         return shopFoods;
-    }
-
-    public void add(List<Food> foods) {
-        add("Trash", chooseFoodForShop(foods));
     }
 }

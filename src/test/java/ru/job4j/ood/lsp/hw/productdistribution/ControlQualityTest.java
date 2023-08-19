@@ -26,7 +26,7 @@ class ControlQualityTest {
         LocalDateTime end = LocalDateTime.of(2023, Month.DECEMBER, 31, 10, 10, 30);
         List<Food> foods = List.of(new Food("Milk", start, end, 100, 5.0));
         controlQuality.distribute(foods, now);
-        List<Food> shopFoods = shop.get("Shop");
+        List<Food> shopFoods = shop.getAll(foods);
         assertThat(shopFoods.get(0).getName()).isEqualTo("Milk");
     }
 
@@ -39,7 +39,7 @@ class ControlQualityTest {
         LocalDateTime end = LocalDateTime.of(2023, Month.AUGUST, 31, 10, 10, 30);
         List<Food> foods = List.of(new Food("Milk", start, end, 100, 5.0));
         controlQuality.distribute(foods, now);
-        List<Food> shopFoods = shop.get("Warehouse");
+        List<Food> shopFoods = shop.get(foods);
         assertThat(shopFoods.get(0).getName()).isEqualTo("Milk");
     }
 
@@ -52,7 +52,7 @@ class ControlQualityTest {
         LocalDateTime end = LocalDateTime.of(2023, Month.JUNE, 1, 10, 10, 30);
         List<Food> foods = List.of(new Food("Milk", start, end, 100, 5.0));
         controlQuality.distribute(foods, now);
-        List<Food> shopFoods = shop.get("Trash");
+        List<Food> shopFoods = shop.get(foods);
         assertThat(shopFoods.get(0).getName()).isEqualTo("Milk");
     }
 }

@@ -15,7 +15,7 @@ public class ControlQuality {
         Percentage percentage = new Percentage();
         List<Food> resPercentage = percentage.getPercentage(food, dateNow);
         for (Store store : storage) {
-            store.add(resPercentage);
+            store.addAll(resPercentage);
         }
     }
 }
